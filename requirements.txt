@@ -1,3 +1,5 @@
 revChatGPT==1.2.1
 tls_client
 undetected_chromedriver
+replicate
+python-dotenv

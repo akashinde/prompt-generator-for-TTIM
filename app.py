@@ -1,21 +1,28 @@
 from promptModel import runModel
+from dotenv import load_dotenv
+import replicate
 
 def print_array(arr):
     for item in arr:
         print(item)
         print()
 
-def generatePrompts():
-    prompt = "A cat on the sofa"
-    new_prompts = runModel(prompt)
+def generatePrompts(prompt):
+    response = runModel(prompt)
     print("\n\nOriginal PROMPT: \n" + prompt + "\n")
     print("New PROMPTS: ")
-    print(new_prompts)
+    print(response)
     print()
 
+load_dotenv()
+prompt = "Imagine a bustling city street during a rainy evening."
+generatePrompts(prompt)
 
-generatePrompts()
-
+# output = replicate.run(
+#     "stability-ai/stable-diffusion:db21e45d3f7023abc2a46ee38a23973f6dce16bb082a930b0c49861f96d1e5bf",
+#     input={"prompt": prompt}
+# )
+# print(output)
 
 
 # Examples

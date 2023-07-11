@@ -49,6 +49,20 @@ def generateExamples2(prompt):
     print(examples)
     return examples
 
+def generateExamples3(prompt):
+    algorithm = '''
+    You will now act as a prompt enhancer which will be used in AI image generation. 
+    The prompt is: ('''+prompt+''').
+    Following is prompt structure which generates the images in AI image generation. 
+    The structure is: (medium, subject, noun, details, background (use the word "in"), specify details about background, stylizers, artist names). 
+    First create 10 different possible values for each of the objects from above structure (POSSIBILITIES SHOULD BE IN THE CONTEXT OF ORIGINAL PROMPT ONLY. DO NOT CHANGE THE CONTEXT OF ORIGINAL PROMPT)
+    Next, generate 10 different prompts with more meaning than the original prompt. (DO NOT CHANGE THE CONTEXT OF ORIGINAL PROMPT.)
+
+    OUTPUT OF ABOVE RESULT SHOULD BE IN THE FORM OF JSON RESPONSE. For first result use "data" as the variable name and for the second result use "prompts" as the variable name.
+    '''
+    response = askGPT(algorithm)
+    data = eval(response)
+    return data
 
 def extractArray(example_list):
     data = []
@@ -66,7 +80,12 @@ def extractArray(example_list):
 
 
 def runModel(prompt):
-    example_list = generateExamples(prompt)
-    examples = extractArray(example_list)
+    # example_list = generateExamples(prompt)
+    # examples = extractArray(example_list)
     # examples = generateExamples2(prompt)
+    examples = generateExamples3(prompt)
     return examples
+
+
+# Prompt format
+# [medium], [subject], [noun], [details], [background (use the word "in")], [specify details about background], [stylizers], [artist names]
